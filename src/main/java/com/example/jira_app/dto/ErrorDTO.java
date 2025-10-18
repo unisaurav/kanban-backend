@@ -1,15 +1,14 @@
 package com.example.jira_app.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import java.util.List;
 
 
 public class ErrorDTO {
-    public int errorcode;
-    public String message;
+    public int errorCode;
+    public List<String> message;
 
-    public ErrorDTO(int errorcode, String message) {
-        this.errorcode = errorcode;
+    public ErrorDTO(int errorCode, List<String> message) {
+        this.errorCode = errorCode;
         this.message = message;
     }
 }

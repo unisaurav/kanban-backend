@@ -4,6 +4,7 @@ import com.example.jira_app.config.CustomException;
 import com.example.jira_app.dto.UserResponseDTO;
 import com.example.jira_app.service.UsersService;
 import com.example.jira_app.model.UsersEntity;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class UsersController {
         return usersServiceObj.getAllUser();
     }
     @PostMapping("/addUser")
-        public ResponseEntity<UserResponseDTO> addUser(@RequestBody UsersEntity user) throws CustomException {
+        public ResponseEntity<UserResponseDTO> addUser(@Valid @RequestBody UsersEntity user) throws CustomException {
             if(usersServiceObj.UserExist(user)){
                 throw new CustomException(22,"User Already in DB", HttpStatus.CONFLICT);
             }

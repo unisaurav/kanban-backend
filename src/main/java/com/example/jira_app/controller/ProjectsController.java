@@ -1,8 +1,9 @@
 package com.example.jira_app.controller;
 
-import com.example.jira_app.config.CustomException;
+import com.example.jira_app.dto.AddProjectRequestDTO;
 import com.example.jira_app.model.ProjectsEntity;
 import com.example.jira_app.service.ProjectsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,8 @@ public class ProjectsController {
     }
 
     @PostMapping("/addProject")
-    public ProjectsEntity addProject(@RequestBody ProjectsEntity proj) throws CustomException {
-      return   projectService.addNewProject(proj);
+    public ProjectsEntity addProject(@Valid @RequestBody AddProjectRequestDTO proj) {
+      return   projectService.addNewProject(new ProjectsEntity(proj.getName(),proj.getDescription(),proj.getOwner()));
     }
 
     @DeleteMapping("/deleteAllProjects")
